@@ -1,0 +1,19 @@
+class Solution:
+    def maxDiff(self, num: int) -> int:
+        s = str(num)
+        for c in s:
+            if c != '9':
+                max_s = s.replace(c, '9')
+                break
+        else:
+            max_s = s
+        if s[0] != '1':
+            min_s = s.replace(s[0], '1')
+        else:
+            for c in s[1:]:  # skip first digit to avoid leading zero
+                if c not in ('0', '1'):
+                    min_s = s.replace(c, '0')
+                    break
+            else:
+                min_s = s
+        return int(max_s) - int(min_s)
